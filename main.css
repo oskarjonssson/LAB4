@@ -39,9 +39,14 @@ body{
   height: 110px;
   border-bottom: 1px solid gray;
 }
-.input-add{
+#input-title{
   margin: 7px 5px;
 }
+
+#input-author{
+  margin: 7px 5px;
+}
+
 #add-btn {
   margin: 5px;
 }
