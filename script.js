@@ -1,26 +1,20 @@
 let callback = function(event){
 
-  let apiBtn = document.getElementById('api-btn');
-  let apiOutput = document.getElementsByClassName('api-output')[0];
-  let req = new XMLHttpRequest();
-
  // GET APU KEY JS KODE
-    function getApi(){
-      req.onreadystatechange = function(event) {
-        if (req.readyState == 4) {
-          let obj = JSON.parse(req.responseText);
-          apiOutput.innerHTML = obj.key;
-        }
-      };
-      req.open('GET', 'https://www.forverkliga.se/JavaScript/api/crud.php?requestKey');
-      req.send();
-    }
+let url = 'https://www.forverkliga.se/JavaScript/api/crud.php?requestKey';
+let outputApi = document.getElementsByClassName('api-output')[0];
+let apiBtn = document.getElementById('api-btn');
+function getApi(){
+  fetch(url)
+  .then(function(response) {
+    return response.json();
+  }).then(function(response2){
+    outputApi.innerHTML = response2.key;
+  })
+};
 
-    apiBtn.addEventListener('click', function() {
-      getApi()
-    });
-
-
-
+apiBtn.addEventListener('click', function(event){
+  getApi();
+});
 }
 window.addEventListener('load', callback);
