@@ -10,11 +10,11 @@ body{
   background-color: lightgray;
   margin: 100px auto;
 }
-/*API SEKTIONEN -- ALL KOD */
+/*API SEKTIONEN -- ALL KOD **/
 .api-output {
   position: relative;
   left: 80px;
-  top: 12.5px;
+  top: 10px;
   height: 20px;
   width: 200px;
   background-color: white;
@@ -27,8 +27,9 @@ body{
 
 #api-btn{
   position: relative;
-  left: -75px;
-  display: inline;
+  top: -10px;
+  left:  0px;
+  margin-left: 5px;
 }
 
 /*ADDERA BÖCKER*/
