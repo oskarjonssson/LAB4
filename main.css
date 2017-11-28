@@ -61,7 +61,7 @@ body{
   margin: 5px;
 }
 
-.list-books{
+#list-books{
   list-style: none;
 }
 .list-books li {
