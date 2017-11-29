@@ -1,6 +1,6 @@
 let callback = function(event){
 
- // GET APU KEY JS CODE
+ // GET API KEY JS CODE
 let url = 'https://www.forverkliga.se/JavaScript/api/crud.php?requestKey';
 let outputApi = document.getElementsByClassName('api-output')[0];
 let apiBtn = document.getElementById('api-btn');
@@ -17,15 +17,17 @@ apiBtn.addEventListener('click', function(event){
   getApi();
 });
 
+
+
 // ADD A BOOK CODE
-
-let inputTitle = document.getElementById('input-title');
-let inputAuthor = document.getElementById('input-author');
-let addBtn = document.getElementById('add-btn');
-let listBooks = document.getElementById('list-books');
-
+let inputTitle = document.getElementById('input-title');//INPUT TITLE
+let inputAuthor = document.getElementById('input-author');//INPUT AUTHOR
+let addBtn = document.getElementById('add-btn'); //ADD BOOK BUTTON
+let listBooks = document.getElementById('list-books'); // LISTA/UL FOR BOOKS
+let showBtn = document.getElementById('show-btn');//SHOW BOOKS BUTTON
 
 // FUNCTION CLICK BUTTON CLICK EVENT
+//INPUT FOR QUERYSTRINGS
 function changeUrl(valueTitle, valueAuthor) {
   let urlEdited = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=insert&key=4tUkA' + '&title=' + valueTitle + '&author=' + valueAuthor;
   console.log(urlEdited);
@@ -46,18 +48,25 @@ function appendList(valueTitle, valueAuthor){
   listBooks.appendChild(liItem);
 };
 
-
-
-
-//BUTTON EVENT CLICK --
+//BUTTON EVENT CLICK -- appendList & changeUrl
 addBtn.addEventListener('click', function(event){
   let valueTitle = inputTitle.value;
   let valueAuthor = inputAuthor.value;
   changeUrl(valueTitle, valueAuthor);
   appendList(valueTitle, valueAuthor);
+  listBooks.style.display = 'none';
+
 });
-
-
+//SHOW LIST / HIDE LIST
+showBtn.addEventListener('click', function(event){
+  if(listBooks.style.display === 'none'){
+    listBooks.style.display = 'block';
+    showBtn.innerHTML = 'Hide books'
+  }else{
+    listBooks.style.display = 'none';
+    showBtn.innerHTML = 'Show books'
+  }
+});
 
 }
 window.addEventListener('load', callback);
