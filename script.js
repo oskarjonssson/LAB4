@@ -25,23 +25,12 @@ let inputAuthor = document.getElementById('input-author');//INPUT AUTHOR
 let addBtn = document.getElementById('add-btn'); //ADD BOOK BUTTON
 let listBooks = document.getElementById('list-books'); // LISTA/UL FOR BOOKS
 let showBtn = document.getElementById('show-btn');//SHOW BOOKS BUTTON
+let apiMessage = document.getElementById('api-message');
+let apiStatus = document.getElementById('api-status');
 
 
 // FUNCTION CLICK BUTTON CLICK EVENT
 //INPUT FOR QUERYSTRINGS
-function changeUrl(valueTitle, valueAuthor) {
-  let urlEdited = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=insert&key=4tUkA' + '&title=' + valueTitle + '&author=' + valueAuthor;
-  console.log(urlEdited);
-     fetch(urlEdited)
-       .then(function(response) {
-         return response.json();
-       }).then(function(json) {
-         outputApi.innerHTML = "Status:"+json.status;
-         outputApi.innerHTML += " ID:"+ json.id;
-         console.log(json);
-       })
-};
-
 let check = function() {
   let valueTitle = inputTitle.value;//INPUT VALUE TITLE
   let valueAuthor = inputAuthor.value;//INPUT VALUE AUTHOR
@@ -57,7 +46,12 @@ let check = function() {
            liItem.innerHTML = valueTitle + ', ' + valueAuthor;
            listBooks.appendChild(liItem);
            listBooks.style.display = 'none';
+           apiStatus.innerHTML = "Status: Succes"
+           apiMessage.innerHTML = "";
+
          }else {
+           apiStatus.innerHTML = "Status: Error";
+           apiMessage.innerHTML = "message: " + json.message;
            console.log('ERROR');//ERROR HANDLING - DISPLAYS IF ERROR FROM API
          }
        })
@@ -69,6 +63,7 @@ function appendList(valueTitle, valueAuthor){
 
   let liItem = document.createElement('li');
   liItem.innerHTML = valueTitle + ', ' + valueAuthor;
+  console.log(json.id);
   listBooks.appendChild(liItem);
 };
 
