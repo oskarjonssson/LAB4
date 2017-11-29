@@ -25,6 +25,8 @@ let inputAuthor = document.getElementById('input-author');//INPUT AUTHOR
 let addBtn = document.getElementById('add-btn'); //ADD BOOK BUTTON
 let listBooks = document.getElementById('list-books'); // LISTA/UL FOR BOOKS
 let showBtn = document.getElementById('show-btn');//SHOW BOOKS BUTTON
+let valueTitle = inputTitle.value; // INPUT VALUE Title
+let valueAuthor = inputAuthor.value; // INPUT VALUE AUTHOR
 
 // FUNCTION CLICK BUTTON CLICK EVENT
 //INPUT FOR QUERYSTRINGS
@@ -41,22 +43,36 @@ function changeUrl(valueTitle, valueAuthor) {
        })
 };
 
+let check = function(valueTitle, valueAuthor) {
+  let urlEdited = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=insert&key=4tUkA' + '&title=' + valueTitle + '&author=' + valueAuthor;
+  console.log(urlEdited);
+     fetch(urlEdited)
+       .then(function(response) {
+         return response.json();
+       }).then(function(json) {
+         console.log(json);
+         if(json.status === 'success'){
+           let liItem = document.createElement('li');
+           liItem.innerHTML = valueTitle + ', ' + valueAuthor;
+           listBooks.appendChild(liItem);
+           listBooks.style.display = 'none';
+         }else {
+           console.log('ERROR');
+         }
+       })
+};
+
+
 //SKAPAR LIST-ELEMENT OCH APPENDAR TILL listBooks
 function appendList(valueTitle, valueAuthor){
+
   let liItem = document.createElement('li');
   liItem.innerHTML = valueTitle + ', ' + valueAuthor;
   listBooks.appendChild(liItem);
 };
 
 //BUTTON EVENT CLICK -- appendList & changeUrl
-addBtn.addEventListener('click', function(event){
-  let valueTitle = inputTitle.value;
-  let valueAuthor = inputAuthor.value;
-  changeUrl(valueTitle, valueAuthor);
-  appendList(valueTitle, valueAuthor);
-  listBooks.style.display = 'none';
-
-});
+addBtn.addEventListener('click', check);
 //SHOW LIST / HIDE LIST
 showBtn.addEventListener('click', function(event){
   if(listBooks.style.display === 'none'){
