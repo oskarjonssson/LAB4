@@ -32,6 +32,19 @@ body{
   margin-left: 5px;
 }
 
+#api-status{
+  position: relative;
+  display: inline-block;
+  height: 20px;
+  width: 100px;
+}
+#api-message{
+  position: relative;
+  display: inline-block;
+  height: 20px;
+
+}
+
 /*ADDERA BÖCKER*/
 
 .add-books-parent {
