@@ -63,6 +63,13 @@ body{
 #add-btn {
   margin: 5px;
 }
+
+#errorAdd{
+  display: none;
+  color: red;
+  margin-left: 10px;
+  font-size: 12px;
+}
 /* VISA BÖCKER SEKTION*/
 .show-parent{
     height: 160px;
@@ -107,5 +114,11 @@ body{
   margin: 10px 0 0 5px ;
 }
 #btn-delete{
-  margin: 5px;
+  margin: 5px 0 0 5px;
+}
+#errorDelete{
+  display: none;
+  color: red;
+  margin-left: 10px;
+  font-size: 12px;
 }
