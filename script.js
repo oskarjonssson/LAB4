@@ -21,6 +21,7 @@ let bookOutput = document.getElementsByClassName('bookOutput')[0]; // DIV FOR BO
 let inputDelete = document.getElementById('input-delete');//INPUT DELETE BOOK
 let deleteBtn = document.getElementById('btn-delete');//BUTTON DELETE BOOK
 
+
 //VIEW ALL BOOKS
 let viewDataFunction = function() {
   let infoDiv = document.getElementById('infoDiv');
@@ -47,9 +48,9 @@ let viewDataFunction = function() {
 }
 viewDataFunction();
 
-
-//SKAPAR LIST-ELEMENT OCH APPENDAR TILL listBooks
+//CREATES BOOK DEPENDING ON INPUT
 let createBook = function() {
+
   let valueTitle = inputTitle.value;//INPUT VALUE TITLE
   let valueAuthor = inputAuthor.value;//INPUT VALUE AUTHOR
   let urlEdited = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=insert&key=GxtKv' + '&title=' + valueTitle + '&author=' + valueAuthor;
@@ -77,6 +78,7 @@ fetch(url)
 apiBtn.addEventListener('click', getApi);//GET API - CLICK EVENT
 addBtn.addEventListener('click', createBook);//ADD BOOK - CLICK EVENT
 deleteBtn.addEventListener('click', deleteBook);//DELETE BOOK BY ID
+
 
 
 }
