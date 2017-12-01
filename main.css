@@ -61,11 +61,19 @@ body{
   margin: 5px;
 }
 
-#list-books{
-  list-style: none;
+
+.bookOutput{
+  display: inline-block;
+  border-radius: 5px;
+  background-color: gray;
+  margin: 5px 0 0 5px;
+  font-family: 'open-sans';
+  font-size: 14px;
 }
-.list-books li {
-  margin-top: 5px;
+.bookOutput p{
+  display: inline-block;
+  padding: 2px;
+  margin: 2px;
 }
 /*ÄNDRA BÖCKER SEKTION*/
 
@@ -82,7 +90,7 @@ body{
 /*RADERA BOK*/
 
 
-.input-delete{
+#input-delete{
   margin: 10px 0 0 5px ;
 }
 #btn-delete{
