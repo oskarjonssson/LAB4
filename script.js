@@ -19,10 +19,12 @@ let inputAuthor = document.getElementById('input-author');//INPUT AUTHOR
 let addBtn = document.getElementById('add-btn'); //ADD BOOK BUTTON
 let bookOutput = document.getElementsByClassName('bookOutput')[0]; // DIV FOR BOOKS
 let inputDelete = document.getElementById('input-delete');//INPUT DELETE BOOK
-let deleteBtn = document.getElementById('btn-delete');//BUTTON DELETE BOOK
-let errorDelete = document.getElementById('errorDelete')//ERROR TEXT ADD
-let errorAdd = document.getElementById('errorAdd')//ERROR TEXT DELETE
-let bookTextList = document.getElementById('div-text'); // P ELEMENT INSIDE DIV THAT CHANGES INNERHTML
+let deleteBtn = document.getElementById('btn-delete');//BUTTON DELETE
+let bookTextList = document.getElementById('div-text');//P ELEMENT IN DIV THAT STORES BOOKS
+let apiMessage = document.getElementById('api-message'); //MESSAGE FROM SERVER
+let apiStatus = document.getElementById('api-status'); //STATUS MESSAGE
+
+
 
 //VIEW ALL BOOKS
 let viewDataFunction = function() {
@@ -60,6 +62,15 @@ let createBook = function() {
          return response.json();
        }).then(function(json) {
          console.log(json);
+         if(json.status === 'success'){//IF API RETURNS STATUS SUCCESS - CREATES NEW BOOK FROM INPUT
+  apiStatus.innerHTML = "Status: Succes"
+  apiMessage.innerHTML = "";
+
+}else {
+  apiStatus.innerHTML = "Status: Error";
+  apiMessage.innerHTML = "message: " + json.message;
+  console.log('ERROR');//ERROR HANDLING - DISPLAYS IF ERROR FROM API
+}
        })
 };
 //DELETE BOOK BY ID
