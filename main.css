@@ -20,7 +20,6 @@ body{
   background-color: white;
 }
 .api-parent {
-  background-color: gren;
   height: 45px;
   border-bottom: 1px solid gray;
 }
@@ -48,7 +47,6 @@ body{
 /*ADDERA BÖCKER*/
 
 .add-books-parent {
-  background-color: gren;
   height: 110px;
   border-bottom: 1px solid gray;
 }
@@ -62,6 +60,13 @@ body{
 
 #add-btn {
   margin: 5px;
+}
+
+#errorAdd{
+  display: none;
+  color: red;
+  margin-left: 10px;
+  font-size: 12px;
 }
 /* VISA BÖCKER SEKTION*/
 .show-parent{
@@ -107,5 +112,11 @@ body{
   margin: 10px 0 0 5px ;
 }
 #btn-delete{
-  margin: 5px;
+  margin: 5px 0 0 5px;
+}
+#errorDelete{
+  display: none;
+  color: red;
+  margin-left: 10px;
+  font-size: 12px;
 }
