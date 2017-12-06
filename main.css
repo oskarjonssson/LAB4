@@ -109,3 +109,35 @@ body{
 #btn-delete{
   margin: 5px;
 }
+
+/*SÖK EFTER BÖCKER STYLE */
+#searchedList {
+
+}
+.infoStyle {
+  position: relative;
+  font-family: arial;
+}
+.imgStyle{
+  padding: 5px;
+}
+.innerWrapper{
+  position: relative;
+}
+#headerSearch {
+  margin: auto;
+  width: 70%;
+  font-size: 14px;
+  font-family: 'open-sans';
+}
+ul{
+  list-style-type:none;
+  padding:0px;
+  margin:0px;
+}
+.containerBook{
+  background-color: #C94C4C;
+  margin: 10px;
+  font-family: 'open-sans';
+  color: white;
+}

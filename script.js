@@ -22,6 +22,8 @@ let inputDelete = document.getElementById('input-delete');//INPUT DELETE BOOK
 let deleteBtn = document.getElementById('btn-delete');//BUTTON DELETE BOOK
 let apiMessage = document.getElementById('api-message'); //MESSAGE FROM SERVER
 let apiStatus = document.getElementById('api-status'); //STATUS MESSAGE
+let addImg = document.createElement('img'); //SKAPAR EN IMG TAG FÖR THUMBNAILS TILL BÖCKERNA
+let createDiv = document.createElement('div'); //SKAPAR EN DIV
 
 
 //VIEW ALL BOOKS
@@ -90,7 +92,43 @@ apiBtn.addEventListener('click', getApi);//GET API - CLICK EVENT
 addBtn.addEventListener('click', createBook);//ADD BOOK - CLICK EVENT
 deleteBtn.addEventListener('click', deleteBook);//DELETE BOOK BY ID
 
+// SEARCH FOR GOOGLE BOOKS
+function fetchGoogleBooks(input) {
+      searchedList.innerHTML = "";
+      let url = 'https://www.googleapis.com/books/v1/volumes?key=AIzaSyAjEEliLxgt_UKvfhO9aQDoF-Rdo2YHKhA&q=' + input;
+      fetch(url)
+        .then(function(response) {
+          return response.json();
+        }).then(function(response2) {
+          console.log(response2);
+          for (i = 0; i < response2.items.length; i++) {
+            let addImg = document.createElement('img');
+            let List = document.createElement('li');
+            let createDivText = document.createElement('div');
+            let createDivImg = document.createElement('div');
+            let createDivWrap = document.createElement('div');
+            let getTitle = response2.items[i].volumeInfo.title;
+            let getAuthor = response2.items[i].volumeInfo.authors;
 
+            addImg.src = response2.items[i].volumeInfo.imageLinks.thumbnail;
+            searchedList.appendChild(List); //Lägger in listan i UL-elementet
+            createDivImg.appendChild(addImg); //Skapar ett IMG-element och lägger in den i den tomma diven
+            createDivWrap.appendChild(createDivImg);
+            createDivWrap.appendChild(createDivText);
+            List.appendChild(createDivWrap);
+            List.className = "innerWrapper"; //Lägger till en klass för Li-elementet
+            createDivText.className = "infoStyle"; //Lägger till en klass för Div'en med text
+            createDivImg.className = "imgStyle"; // Lägger till en klass för Div'en med bildenv(thumbnail) i
+            createDivWrap.className = "containerBook";
+
+            createDivText.innerHTML += getTitle + "<br>" + "Author: " + getAuthor + "<br>";
+          }
+        });
+    }
+    searchBtn.addEventListener('click', function(event) {
+      let inputValue = searchField.value;
+      fetchGoogleBooks(inputValue);
+    })
 
 }
 window.addEventListener('load', callback);
