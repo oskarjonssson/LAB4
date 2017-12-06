@@ -120,3 +120,41 @@ body{
   margin-left: 10px;
   font-size: 12px;
 }
+
+/*SÖK EFTER BÖCKER STYLE */
+#searchedList {
+
+}
+.infoStyle {
+  position: relative;
+  font-family: arial;
+  display: inline-block;
+  padding-top: 50px;
+}
+.imgStyle{
+  padding: 5px;
+  display: inline-block;
+
+}
+.innerWrapper{
+  position: relative;
+}
+#headerSearch {
+  margin: auto;
+  width: 70%;
+  font-size: 14px;
+  font-family: 'open-sans';
+}
+ul{
+  list-style-type:none;
+  padding:0px;
+  margin:0px;
+}
+.containerBook{
+  display: flex;
+  flex-direction: row;
+  background-color: #C94C4C;
+  margin: 10px;
+  font-family: 'open-sans';
+  color: white;
+}
