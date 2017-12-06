@@ -119,11 +119,11 @@ body{
   font-family: arial;
   display: inline-block;
   padding-top: 50px;
+  width: 300px;
 }
 .imgStyle{
   padding: 5px;
   display: inline-block;
-
 }
 .innerWrapper{
   position: relative;
@@ -142,8 +142,24 @@ ul{
 .containerBook{
   display: flex;
   flex-direction: row;
-  background-color: #C94C4C;
+  background-color: #0A1016;
   margin: 10px;
   font-family: 'open-sans';
   color: white;
+}
+.addBookStyleBtn{
+    margin-right: 15px;
+    border: 1px solid transparent;
+    background: #C94C4C;
+    cursor: pointer;
+    width: 130px;
+    height: 40px;
+    color: #fff;
+    border-radius: 30px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+.divBtnWrap{
+  padding-right: 50px;
+  padding-top: 20px;
 }
