@@ -33,7 +33,6 @@ let viewDataFunction = function() {
     .then(function(response) {
       return response.json();
     }).then(function(json) {
-      console.log(json);
         if(json.status === 'success'){
         bookTextList.innerHTML = "";
         for(i = 0; i < json.data.length; i++) {
