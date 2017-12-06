@@ -113,6 +113,8 @@ function fetchGoogleBooks(input) {
             let createDivText = document.createElement('div');
             let createDivImg = document.createElement('div');
             let createDivWrap = document.createElement('div');
+            let createDivBtn = document.createElement('div');
+            let createBtn = document.createElement('button');
             let getTitle = response2.items[i].volumeInfo.title;
             let getAuthor = response2.items[i].volumeInfo.authors;
 
@@ -122,11 +124,15 @@ function fetchGoogleBooks(input) {
             createDivWrap.appendChild(createDivImg);
             createDivWrap.appendChild(createDivText);
             List.appendChild(createDivWrap);
+            createDivWrap.appendChild(createDivBtn);
+            createDivBtn.appendChild(createBtn);
             List.className = "innerWrapper"; //Lägger till en klass för Li-elementet
             createDivText.className = "infoStyle"; //Lägger till en klass för Div'en med text
             createDivImg.className = "imgStyle"; // Lägger till en klass för Div'en med bildenv(thumbnail) i
             createDivWrap.className = "containerBook";
-
+            createBtn.className = "addBookStyleBtn";
+            createDivBtn.className = "divBtnWrap"
+            createBtn.innerHTML = "ADD BOOK";
             createDivText.innerHTML += getTitle + "<br>" + "Author: " + getAuthor + "<br>";
           }
         });
