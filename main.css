@@ -117,9 +117,13 @@ body{
 .infoStyle {
   position: relative;
   font-family: arial;
+  display: inline-block;
+  padding-top: 50px;
 }
 .imgStyle{
   padding: 5px;
+  display: inline-block;
+
 }
 .innerWrapper{
   position: relative;
@@ -136,6 +140,8 @@ ul{
   margin:0px;
 }
 .containerBook{
+  display: flex;
+  flex-direction: row;
   background-color: #C94C4C;
   margin: 10px;
   font-family: 'open-sans';
