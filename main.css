@@ -1,6 +1,15 @@
 body{
   margin: 0;
   padding: 0;
+  background-color: #0A1016;
+}
+h3{
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 48px;
+  line-height: .67;
+  display: inline;
+  font-family: arial;
 }
 /*Backgrund GRÅ*/
 .bg{
@@ -8,7 +17,7 @@ body{
   width: 700px;
   height: 525px;
   background-color: lightgray;
-  margin: 100px auto;
+  margin: 100px auto 50px;
 }
 /*API SEKTIONEN -- ALL KOD **/
 .api-output {
@@ -140,7 +149,7 @@ body{
   width: 300px;
 }
 .imgStyle{
-  padding: 5px;
+  padding: 15px;
   display: inline-block;
 }
 .innerWrapper{
@@ -148,7 +157,7 @@ body{
 }
 #headerSearch {
   margin: auto;
-  width: 70%;
+  width: 50%;
   font-size: 14px;
   font-family: 'open-sans';
 }
@@ -158,6 +167,7 @@ ul{
   margin:0px;
 }
 .containerBook{
+  border-radius: 5px;
   display: flex;
   flex-direction: row;
   background-color: lightgray;
@@ -181,6 +191,37 @@ ul{
   padding-right: 50px;
   padding-top: 20px;
 }
+/*
+#searchContainer{
+  padding: 30px 0;
+  display: inline-block;
+}
+#searchField{
+  height: 32px;
+    line-height: 32px;
+    background-color: #223;
+    border-radius: 32px;
+    border: transparent;
+    text-align: left;
+    color: #fff;
+    padding: 0 15px;
+    cursor: pointer;
+    outline: 0;
+    z-index: 2;
+}
+#searchBtn{
+  border: 1px solid hsla(0,0%,100%,.8);
+  background: 0 0;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  width: 130px;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 30px;
+  text-transform: uppercase;
+}
+*/
 
 
 

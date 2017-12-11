@@ -1,4 +1,4 @@
-let callback = function(event){
+let callback = function(event) {
 
   //COUNTER
   let counterOutput = document.getElementById('counter');
@@ -182,12 +182,6 @@ function fetchGoogleBooks(input) {
           }
         });
 };
-
-
-
-
-
-
 
 }
 
