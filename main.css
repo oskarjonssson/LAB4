@@ -160,13 +160,13 @@ ul{
 .containerBook{
   display: flex;
   flex-direction: row;
-  background-color: #0A1016;
+  background-color: lightgray;
   margin: 10px;
   font-family: 'open-sans';
-  color: white;
+  color: black;
 }
 .addBookStyleBtn{
-    margin-right: 15px;
+    margin: 60px 0 0 200px ;
     border: 1px solid transparent;
     background: #C94C4C;
     cursor: pointer;
@@ -181,3 +181,7 @@ ul{
   padding-right: 50px;
   padding-top: 20px;
 }
+
+
+
+/*** TEST SEARCH GOOGLE ***/

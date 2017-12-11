@@ -60,10 +60,10 @@ let viewDataFunction = function() {
 viewDataFunction();
 
 //CREATES BOOK DEPENDING ON INPUT
-let createBook = function() {
+let createBook = function(googleTitle, googleAuthor) {
   let valueTitle = inputTitle.value;//INPUT VALUE TITLE
   let valueAuthor = inputAuthor.value;//INPUT VALUE AUTHOR
-  let urlEdited = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=insert&key=GxtKv' + '&title=' + valueTitle + '&author=' + valueAuthor;
+  let urlEdited = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=insert&key=GxtKv' + '&title=' + valueTitle + googleTitle + '&author=' + valueAuthor + googleAuthor;
      fetch(urlEdited)
        .then(function(response) {
          return response.json();
@@ -134,8 +134,14 @@ btnChange.addEventListener('click', changeBook); // CHANGEBOOK - CLICK EVENT
 apiBtn.addEventListener('click', getApi);//GET API - CLICK EVENT
 addBtn.addEventListener('click', createBook);//ADD BOOK - CLICK EVENT
 deleteBtn.addEventListener('click', deleteBook);//DELETE BOOK BY ID
+searchBtn.addEventListener('click', function(event) { // SEARCH GOOGLE API BOOKS
+  let inputValue = searchField.value;
+  fetchGoogleBooks(inputValue);
+});
+
 
 // SEARCH FOR GOOGLE BOOKS
+let searchedList = document.getElementById('searchedList');
 function fetchGoogleBooks(input) {
       searchedList.innerHTML = "";
       let url = 'https://www.googleapis.com/books/v1/volumes?key=AIzaSyAjEEliLxgt_UKvfhO9aQDoF-Rdo2YHKhA&q=' + input;
@@ -150,7 +156,6 @@ function fetchGoogleBooks(input) {
             let createDivText = document.createElement('div');
             let createDivImg = document.createElement('div');
             let createDivWrap = document.createElement('div');
-            let createDivBtn = document.createElement('div');
             let createBtn = document.createElement('button');
             let getTitle = response2.items[i].volumeInfo.title;
             let getAuthor = response2.items[i].volumeInfo.authors;
@@ -161,23 +166,29 @@ function fetchGoogleBooks(input) {
             createDivWrap.appendChild(createDivImg);
             createDivWrap.appendChild(createDivText);
             List.appendChild(createDivWrap);
-            createDivWrap.appendChild(createDivBtn);
-            createDivBtn.appendChild(createBtn);
+            createDivWrap.appendChild(createBtn);
             List.className = "innerWrapper"; //Lägger till en klass för Li-elementet
             createDivText.className = "infoStyle"; //Lägger till en klass för Div'en med text
             createDivImg.className = "imgStyle"; // Lägger till en klass för Div'en med bildenv(thumbnail) i
             createDivWrap.className = "containerBook";
             createBtn.className = "addBookStyleBtn";
-            createDivBtn.className = "divBtnWrap"
             createBtn.innerHTML = "ADD BOOK";
+            createBtn.addEventListener('click', function(event){
+              createBook(getTitle, getAuthor);
+
+
+            })
             createDivText.innerHTML += getTitle + "<br>" + "Author: " + getAuthor + "<br>";
           }
         });
-    }
-    searchBtn.addEventListener('click', function(event) {
-      let inputValue = searchField.value;
-      fetchGoogleBooks(inputValue);
-    })
+};
+
+
+
+
+
+
 
 }
+
 window.addEventListener('load', callback);
