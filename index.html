@@ -24,16 +24,17 @@
       <div class="bookOutput"><p id="div-text"></p></div>
     </div>
     <div class="change-parent">
-      <input class="input-change" placeholder="Book ID"></input><br>
-      <input class="input-change" placeholder="Title"></input><br>
-      <input class="input-change" placeholder="Author"></input><br>
-      <button id="btn-change">Change</button>
+      <input id="input-id-change" placeholder="Book ID"></input><br>
+      <input id="input-title-change" placeholder="Book Title"></input><br>
+      <input id="input-author-change" placeholder="Book Author"></input><br>
+      <button id="btnChange">Change book</button>
     </div>
     <div class="delete-parent">
       <input id="input-delete" placeholder="Book ID"></input><br>
       <button id="btn-delete">Delete book</button>
       <p id="errorDelete">ERROR - Please try again</p>
     </div>
+      <p id="counter"></p>
   </section>
   <!--SÖK EFTER BOK -->
   <section>
@@ -42,7 +43,6 @@
     <button id="searchBtn">Search</button>
     <ul id="searchedList"></ul>
   </div>
-
 </section>
 
   <script src="script.js"></script>

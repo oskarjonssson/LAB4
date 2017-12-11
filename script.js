@@ -1,5 +1,9 @@
 let callback = function(event){
 
+  //COUNTER
+  let counterOutput = document.getElementById('counter');
+  let counter = 0;
+
  // GET API KEY JS CODE
 let url = 'https://www.forverkliga.se/JavaScript/api/crud.php?requestKey';
 let outputApi = document.getElementsByClassName('api-output')[0];
@@ -39,13 +43,16 @@ let viewDataFunction = function() {
         bookTextList.innerHTML = "";
         for(i = 0; i < json.data.length; i++) {
           bookTextList.innerHTML +=
-          "Author: " + json.data[i].author +
-          " Title: " + json.data[i].title +
-          " ID: " + json.data[i].id +
+          " Title: " + json.data[i].title + " " +
+          "Author: " + json.data[i].author + " " +
+          " ID: " + json.data[i].id + " " +
           " Updated: " + json.data[i].updated + "<br>";
         }
       }else{
         bookTextList.innerHTML += 'Error loading books - Please refresh the page';
+        counter += 1;
+        counterOutput.innerHTML ='ERRORS: ' + counter;
+
       }
       console.log(json);
     })
@@ -57,42 +64,73 @@ let createBook = function() {
   let valueTitle = inputTitle.value;//INPUT VALUE TITLE
   let valueAuthor = inputAuthor.value;//INPUT VALUE AUTHOR
   let urlEdited = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=insert&key=GxtKv' + '&title=' + valueTitle + '&author=' + valueAuthor;
-  console.log(urlEdited);
      fetch(urlEdited)
        .then(function(response) {
          return response.json();
        }).then(function(json) {
          console.log(json);
          if(json.status === 'success'){//IF API RETURNS STATUS SUCCESS - CREATES NEW BOOK FROM INPUT
-  apiStatus.innerHTML = "Status: Succes"
-  apiMessage.innerHTML = "";
+           apiStatus.innerHTML = "Status: Succes"
+           apiMessage.innerHTML = "";
 
-}else {
-  apiStatus.innerHTML = "Status: Error";
-  apiMessage.innerHTML = "message: " + json.message;
-  console.log('ERROR');//ERROR HANDLING - DISPLAYS IF ERROR FROM API
-}
+         }else {
+           apiStatus.innerHTML = "Status: Error";
+           apiMessage.innerHTML = "message: " + json.message;
+           console.log('ERROR');//ERROR HANDLING - DISPLAYS IF ERROR FROM API
+           counter += 1;
+           counterOutput.innerHTML ='ERRORS: ' + counter;
+         }
        })
 };
 //DELETE BOOK BY ID
 let deleteBook = function() {
-let valueDelete = inputDelete.value; //INPUT VALUE ID
-let url = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=delete&key=GxtKv' + '&id=' + valueDelete;
-fetch(url)
-  .then(function(response) {
-    return response.json();
-  }).then(function(json) {
-    console.log(json.status);
-    if(json.status === "success"){
-      viewDataFunction();
-      errorDelete.style.display = 'none';
-    }else{
-      errorDelete.style.display = 'inline-block';
-    }
-  });
-}
+  let valueDelete = inputDelete.value; //INPUT VALUE ID
+  let urlDelete = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=delete&key=GxtKv' + '&id=' + valueDelete;
+  fetch(urlDelete)
+    .then(function(response) {
+      return response.json();
+    }).then(function(json) {
+      console.log(json.status);
+      if(json.status === "success"){
+        viewDataFunction();
+        errorDelete.style.display = 'none';
+      }else{
+        errorDelete.style.display = 'inline';
+        counter += 1;
+        counterOutput.innerHTML ='ERRORS: ' + counter;
+      }
+    });
+};
+// CHANGE BOOKS ------------------
+
+let btnChange = document.getElementById('btnChange');
+let idChange = document.getElementById('input-id-change');
+let titleChange = document.getElementById('input-title-change');
+let authorChange = document.getElementById('input-author-change');
+
+
+let changeBook = function(){
+  //INPUT VALUES
+  let idChangeValue = idChange.value;
+  let titleChangeValue = titleChange.value;
+  let authorChangeValue = authorChange.value;
+  let urlChange = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=update&key=GxtKv' + '&id=' + idChangeValue + '&title=' + titleChangeValue + '&author=' + authorChangeValue;
+  fetch(urlChange)
+    .then(function(response){
+      return response.json();
+    }).then(function(json){
+      if(json.status == 'success'){
+        console.log('SUCCESS'); //IF SUCCESS
+      }else{
+        console.log('ERROR - CHANGE') //IF ERROR
+        counter += 1;
+        counterOutput.innerHTML ='ERRORS: ' + counter;
+      }
+    })
+};
 
 // EVENTS
+btnChange.addEventListener('click', changeBook); // CHANGEBOOK - CLICK EVENT
 apiBtn.addEventListener('click', getApi);//GET API - CLICK EVENT
 addBtn.addEventListener('click', createBook);//ADD BOOK - CLICK EVENT
 deleteBtn.addEventListener('click', deleteBook);//DELETE BOOK BY ID

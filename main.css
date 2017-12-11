@@ -44,6 +44,13 @@ body{
 
 }
 
+#counter{
+  margin: 0 15px;
+  display: relative;
+  float: right;
+  right: 0px;
+}
+
 /*ADDERA BÖCKER*/
 
 .add-books-parent {
