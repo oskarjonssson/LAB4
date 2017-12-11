@@ -29,7 +29,6 @@ h3{
   background-color: white;
 }
 .api-parent {
-  background-color: gren;
   height: 45px;
   border-bottom: 1px solid gray;
 }
@@ -54,10 +53,16 @@ h3{
 
 }
 
+#counter{
+  margin: 0 15px;
+  display: relative;
+  float: right;
+  right: 0px;
+}
+
 /*ADDERA BÖCKER*/
 
 .add-books-parent {
-  background-color: gren;
   height: 110px;
   border-bottom: 1px solid gray;
 }
@@ -71,6 +76,13 @@ h3{
 
 #add-btn {
   margin: 5px;
+}
+
+#errorAdd{
+  display: none;
+  color: red;
+  margin-left: 10px;
+  font-size: 12px;
 }
 /* VISA BÖCKER SEKTION*/
 .show-parent{
@@ -116,7 +128,13 @@ h3{
   margin: 10px 0 0 5px ;
 }
 #btn-delete{
-  margin: 5px;
+  margin: 5px 0 0 5px;
+}
+#errorDelete{
+  display: none;
+  color: red;
+  margin-left: 10px;
+  font-size: 12px;
 }
 
 /*SÖK EFTER BÖCKER STYLE */
@@ -152,13 +170,13 @@ ul{
   border-radius: 5px;
   display: flex;
   flex-direction: row;
-  background-color: #161C2D;
+  background-color: lightgray;
   margin: 10px;
   font-family: 'open-sans';
-  color: white;
+  color: black;
 }
 .addBookStyleBtn{
-    margin-right: 15px;
+    margin: 60px 0 0 200px ;
     border: 1px solid transparent;
     background: #C94C4C;
     cursor: pointer;
@@ -173,6 +191,7 @@ ul{
   padding-right: 50px;
   padding-top: 20px;
 }
+/*
 #searchContainer{
   padding: 30px 0;
   display: inline-block;
@@ -202,3 +221,8 @@ ul{
   border-radius: 30px;
   text-transform: uppercase;
 }
+*/
+
+
+
+/*** TEST SEARCH GOOGLE ***/
