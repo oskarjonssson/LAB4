@@ -60,10 +60,10 @@ let viewDataFunction = function() {
 viewDataFunction();
 
 //CREATES BOOK DEPENDING ON INPUT
-let createBook = function(googleTitle, googleAuthor) {
+let createBook = function() {
   let valueTitle = inputTitle.value;//INPUT VALUE TITLE
   let valueAuthor = inputAuthor.value;//INPUT VALUE AUTHOR
-  let urlEdited = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=insert&key=GxtKv' + '&title=' + valueTitle + googleTitle + '&author=' + valueAuthor + googleAuthor;
+  let urlEdited = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=insert&key=GxtKv' + '&title=' + valueTitle + '&author=' + valueAuthor;
      fetch(urlEdited)
        .then(function(response) {
          return response.json();
@@ -80,6 +80,31 @@ let createBook = function(googleTitle, googleAuthor) {
            console.log('ERROR');//ERROR HANDLING - DISPLAYS IF ERROR FROM API
            counter += 1;
            counterOutput.innerHTML ='ERRORS: ' + counter;
+         }
+       })
+};
+
+// LÄGGER TILL EN BOK FRÅN GOOGLE BOOKS.. GÅR DE ATT KOMPRIMERA DENNA FUNKTION?? ÄR IPRINCIP LIKADAN SOM FUNKTIONEN OVAN..
+//TRÖTT I HUVUDET, KAN INTE TÄNKA :P
+let createBook2 = function(googleTitle, googleAuthor) {
+  let urlEdited = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=insert&key=GxtKv' + '&title=' + googleTitle + '&author=' + googleAuthor;
+     fetch(urlEdited)
+       .then(function(response) {
+         return response.json();
+       }).then(function(json) {
+         console.log(json);
+         if(json.status === 'success'){//IF API RETURNS STATUS SUCCESS - CREATES NEW BOOK FROM INPUT
+           apiStatus.innerHTML = "Status: Succes"
+           apiMessage.innerHTML = "";
+           console.log('SUCCESS');
+           viewDataFunction();  // UPDATES THE LIST AFTER YOU ADDED THE BOOK
+         }else {
+           apiStatus.innerHTML = "Status: Error";
+           apiMessage.innerHTML = "message: " + json.message;
+           console.log('ERROR');//ERROR HANDLING - DISPLAYS IF ERROR FROM API
+           counter += 1;
+           counterOutput.innerHTML ='ERRORS: ' + counter;
+           viewDataFunction();
          }
        })
 };
@@ -123,7 +148,9 @@ let changeBook = function(){
     }).then(function(json){
       if(json.status == 'success'){
         console.log('SUCCESS'); //IF SUCCESS
+        viewDataFunction();  // UPDATES THE LIST AFTER YOU ADDED THE BOOK
       }else{
+        changeBook();
         console.log('ERROR - CHANGE') //IF ERROR
         counter += 1;
         counterOutput.innerHTML ='ERRORS: ' + counter;
@@ -176,7 +203,8 @@ function fetchGoogleBooks(input) {
             createBtn.className = "addBookStyleBtn";
             createBtn.innerHTML = "ADD BOOK";
             createBtn.addEventListener('click', function(event){
-              createBook(getTitle, getAuthor);
+              createBook2(getTitle, getAuthor);
+              viewDataFunction();
 
 
             })
