@@ -49,10 +49,10 @@ let viewDataFunction = function() {
           " Updated: " + json.data[i].updated + "<br>";
         }
       }else{
+        viewDataFunction()
         bookTextList.innerHTML += 'Error loading books - Please refresh the page';
         counter += 1;
         counterOutput.innerHTML ='ERRORS: ' + counter;
-
       }
       console.log(json);
     })
@@ -72,7 +72,8 @@ let createBook = function(googleTitle, googleAuthor) {
          if(json.status === 'success'){//IF API RETURNS STATUS SUCCESS - CREATES NEW BOOK FROM INPUT
            apiStatus.innerHTML = "Status: Succes"
            apiMessage.innerHTML = "";
-
+           console.log('SUCCESS');
+           viewDataFunction();  // UPDATES THE LIST AFTER YOU ADDED THE BOOK
          }else {
            apiStatus.innerHTML = "Status: Error";
            apiMessage.innerHTML = "message: " + json.message;
@@ -92,9 +93,10 @@ let deleteBook = function() {
     }).then(function(json) {
       console.log(json.status);
       if(json.status === "success"){
-        viewDataFunction();
+        viewDataFunction(); // UPDATES THE LIST AFTER YOU ADDED THE BOOK
         errorDelete.style.display = 'none';
       }else{
+        deleteBook();
         errorDelete.style.display = 'inline';
         counter += 1;
         counterOutput.innerHTML ='ERRORS: ' + counter;
