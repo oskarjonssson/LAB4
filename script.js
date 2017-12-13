@@ -99,6 +99,7 @@ let createBook2 = function(googleTitle, googleAuthor) {
            console.log('SUCCESS');
            viewDataFunction();  // UPDATES THE LIST AFTER YOU ADDED THE BOOK
          }else {
+           createBook2(googleTitle, googleAuthor);
            apiStatus.innerHTML = "Status: Error";
            apiMessage.innerHTML = "message: " + json.message;
            console.log('ERROR');//ERROR HANDLING - DISPLAYS IF ERROR FROM API
@@ -135,6 +136,23 @@ let idChange = document.getElementById('input-id-change');
 let titleChange = document.getElementById('input-title-change');
 let authorChange = document.getElementById('input-author-change');
 
+//CHANGE BOOKS WITH KEYPRESS-ENTER
+let inputTitleChange = document.getElementById('input-title-change');
+let inputAuthorChange = document.getElementById('input-author-change');
+
+let keyPressEnterFunction = function(event){
+    if (event.keyCode == 13) {
+      if(inputAuthorChange.value.length > 1 && inputTitleChange.value.length > 1){
+        console.log('You pressed a "enter" key');
+        changeBook();
+      }else{
+        console.log('The name needs to be longer');
+      }
+    }
+  }
+
+inputAuthorChange.addEventListener('keypress', keyPressEnterFunction);
+inputTitleChange.addEventListener('keypress', keyPressEnterFunction);
 
 let changeBook = function(){
   //INPUT VALUES
@@ -159,6 +177,7 @@ let changeBook = function(){
 };
 
 // EVENTS
+
 btnChange.addEventListener('click', changeBook); // CHANGEBOOK - CLICK EVENT
 apiBtn.addEventListener('click', getApi);//GET API - CLICK EVENT
 addBtn.addEventListener('click', createBook);//ADD BOOK - CLICK EVENT
