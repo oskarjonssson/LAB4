@@ -93,6 +93,9 @@ let deleteBook = function() {
         //errorDelete.style.display = 'none';
       }else{
         deleteBook();
+        if(counter > 10){
+          window.location.reload(); //RELOADS PAGE IF ERROR EXCEED 10
+        }
         //errorDelete.style.display = 'inline';
         counter += 1;
         counterOutput.innerHTML ='ERRORS: ' + counter;
@@ -100,7 +103,15 @@ let deleteBook = function() {
     });
 };
 
-deleteBtn.addEventListener('click', deleteBook);//DELETE BOOK BY ID
+let deleteBookLimit = function(){
+  if(inputDelete.value.length == 5){
+    deleteBook();
+  }else{
+    console.log("Input must have length of five")
+  }
+
+}
+deleteBtn.addEventListener('click', deleteBookLimit);//DELETE BOOK BY ID
 
 // CHANGE BOOKS WITH KEYPRESS
 
