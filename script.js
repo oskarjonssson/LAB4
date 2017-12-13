@@ -39,6 +39,7 @@ let viewDataFunction = function() {
           //" Updated: " + json.data[i].updated + "<br>";
         }
       }else{
+        viewDataFunction()
         bookTextList.innerHTML += json.message + " " + "- Please refresh the page";
         counter += 1;
         counterOutput.innerHTML ='ERRORS: ' + counter;
@@ -70,11 +71,6 @@ let createBook = function(googleTitle, googleAuthor) {
          }
        })
 };
-
-
-
-
-
 
 //DELETE BOOKS
 let inputDelete = document.getElementById('input-delete');//INPUT DELETE BOOK
