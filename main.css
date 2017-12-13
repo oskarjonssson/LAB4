@@ -227,12 +227,10 @@ ul{
   }
 }
 
-@media screen
-  and (device-width: 360px)
-  and (device-height: 640px){
+@media screen and (max-width: 429px) and (min-width: 300px){
   .change-container{
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
   }
   .change-container input{
     position: relative;
