@@ -1,149 +1,167 @@
+/*** GLOBAL***/
 body{
+  background-color: #3c3253;
+
+}
+/***NAV**/
+.nav-header{
   margin: 0;
-  padding: 0;
-  background-color: #0A1016;
+  height: 35px;
 }
-h3{
-  color: #fff;
-  text-transform: capitalize;
-  font-size: 48px;
-  line-height: .67;
-  display: inline;
-  font-family: arial;
-}
-/*Backgrund GRÅ*/
-.bg{
-  border: 1px solid gray;
-  width: 700px;
-  height: 525px;
-  background-color: lightgray;
-  margin: 100px auto 50px;
-}
-/*API SEKTIONEN -- ALL KOD **/
-.api-output {
-  position: relative;
-  left: 80px;
-  top: 10px;
-  height: 20px;
-  width: 200px;
-  background-color: white;
-}
-.api-parent {
-  height: 45px;
-  border-bottom: 1px solid gray;
+
+.nav-header h1 {
+  display: inline-block;
+  margin: 0;
+  font-size: 30px;
+  font-weight: normal;
+  font-family: 'Montserrat';
+  color: white;
 }
 
 #api-btn{
-  position: relative;
-  top: -10px;
-  left:  0px;
-  margin-left: 5px;
-}
-
-#api-status{
-  position: relative;
-  display: inline-block;
-  height: 20px;
-  width: 100px;
-}
-#api-message{
-  position: relative;
-  display: inline-block;
-  height: 20px;
-
-}
-
-#counter{
-  margin: 0 15px;
-  display: relative;
+  margin: 5px 0 0 0;
   float: right;
-  right: 0px;
-}
-
-/*ADDERA BÖCKER*/
-
-.add-books-parent {
-  height: 110px;
-  border-bottom: 1px solid gray;
-}
-#input-title{
-  margin: 7px 5px;
-}
-
-#input-author{
-  margin: 7px 5px;
-}
-
-#add-btn {
-  margin: 5px;
-}
-
-#errorAdd{
-  display: none;
-  color: red;
-  margin-left: 10px;
-  font-size: 12px;
-}
-/* VISA BÖCKER SEKTION*/
-.show-parent{
-    height: 160px;
-    border-bottom: 1px solid gray;
-    margin-bottom: 7.5px;
-}
-
-#show-btn {
-  margin: 5px;
-}
-
-
-.bookOutput{
-  display: inline-block;
-  border-radius: 5px;
-  background-color: gray;
-  margin: 5px 0 0 5px;
-  font-family: 'open-sans';
-  font-size: 14px;
-}
-.bookOutput p{
-  display: inline-block;
+  border-radius: 2px;
+  border: none;
   padding: 2px;
-  margin: 2px;
-}
-/*ÄNDRA BÖCKER SEKTION*/
-
-.change-parent {
-  height: 120px;
-  border-bottom: 1px solid gray;
-}
-.input-change {
-    margin: 3px 5px;
-}
-#btn-change{
-  margin: 5px;
-}
-/*RADERA BOK*/
-
-
-#input-delete{
-  margin: 10px 0 0 5px ;
-}
-#btn-delete{
-  margin: 5px 0 0 5px;
-}
-#errorDelete{
-  display: none;
-  color: red;
-  margin-left: 10px;
-  font-size: 12px;
+  font-size: 13px;
+  font-family: 'Montserrat';
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  color: white;
+  background-color: #008CBA;
 }
 
-/*SÖK EFTER BÖCKER STYLE */
-#searchedList {
+.api-output{
+  font-family: 'Montserrat';
+  color: black;
+  margin: 5px 10px 0 2px;
+  float: right;
+  height: 20px;
+  width: 130px;
+  background-color: white;
+}
+/*** ERROR COUNTER ***/
+.errorContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+#counter{
+  margin: 0 10px 0 0;
+  letter-spacing: 1.5px;
+  color: white;
+  font-family: 'Montserrat';
+  font-size: 20px;
+}
+/*** LIBRARY / MAIN ***/
+
+.container-library{
+  margin: 0;
+  position: relative;
+  width: 100%;
+  height: 500px;
+  margin: 10px 0 10px 0;
+}
+
+.outputBooks{
+    margin: 0;
+    font-family: 'Montserrat';
+    color: white;
+    width: 90%;
+}
+
+.change-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 0 0 5px 0;
+  position: absolute;
+  bottom: 0;
+}
+.change-container input{
+  position: relative;
+  margin: 0 7px 0 0;
+}
+
+.delete-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0 0px 5px 2px;
+}
+
+.delete-container input {
+  margin: 0 0 0 2px;
+}
+
+.delete-container button {
+  margin: 0 0px 0 2px;
+  border-radius: 2px;
+  border: none;
+  padding: 2px;
+  font-size: 13px;
+  font-family: 'Montserrat';
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  color: white;
+  background-color: #008CBA;
+}
+
+/*** SERACH GOOGLE BOOKS ***/
+
+.container-search{
+  width: 100%;
+  height: 80px;
+  border-top: 0.5px solid white;
 
 }
+.container-input{
+  margin: 10px 0 0 0px;
+}
+#searchText{
+  margin: 5px 0 0 0;
+  letter-spacing: 0.3px;
+  font-weight: normal;
+  font-family: 'Montserrat';
+  color: white;
+}
+#inputSearch{
+  font-size: 15px;
+  border: none;
+  width: 200px;
+  height: 25px;
+  border-radius: 2px;
+}
+
+#buttonSearch{
+  border-radius: 2px;
+  border: none;
+  padding: 4px;
+  font-size: 15px;
+  font-family: 'Montserrat';
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  color: white;
+  background-color: #008CBA;
+}
+
+.containerApiBooks{
+  margin: 10px 0 0 0;
+  width: 100%;
+}
+
+
+/*** OKLART  API GOOGLE***/
+
 .infoStyle {
   position: relative;
-  font-family: arial;
+  font-family: 'Montserrat';
   display: inline-block;
   padding-top: 50px;
   width: 300px;
@@ -155,12 +173,7 @@ h3{
 .innerWrapper{
   position: relative;
 }
-#headerSearch {
-  margin: auto;
-  width: 50%;
-  font-size: 14px;
-  font-family: 'open-sans';
-}
+
 ul{
   list-style-type:none;
   padding:0px;
@@ -172,17 +185,18 @@ ul{
   flex-direction: row;
   background-color: lightgray;
   margin: 10px;
-  font-family: 'open-sans';
+  font-family: 'Montserrat';
   color: black;
 }
 .addBookStyleBtn{
-    margin: 60px 0 0 100px ;
+    margin: 60px 0 0 200px ;
     border: 1px solid transparent;
     background: #C94C4C;
     cursor: pointer;
     width: 130px;
     height: 40px;
     color: #fff;
+    font-family: 'Montserrat';
     border-radius: 30px;
     text-transform: uppercase;
     font-weight: 400;
@@ -191,34 +205,121 @@ ul{
   padding-right: 50px;
   padding-top: 20px;
 }
-#searchContainer{
-  padding: 30px 0;
-  display: inline-block;
-}
-#searchField{
-  height: 32px;
-    line-height: 32px;
-    background-color: #223;
-    border-radius: 32px;
-    border: transparent;
-    text-align: left;
-    color: #fff;
-    padding: 0 15px;
-    cursor: pointer;
-    outline: 0;
-    z-index: 2;
-}
-#searchBtn{
-  border: 1px solid hsla(0,0%,100%,.8);
-  background: 0 0;
-  color: #fff;
-  outline: none;
-  cursor: pointer;
-  width: 130px;
-  line-height: 40px;
-  text-align: center;
-  border-radius: 30px;
-  text-transform: uppercase;
+
+/*** MEDIA QUERIES ***/
+
+@media screen and (max-width: 1100px) and (min-width: 1050px){
+
 }
 
-/*** TEST SEARCH GOOGLE ***/
+@media screen and (max-width: 800px) and (min-width: 630px){
+  .change-container{
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .change-container input{
+    position: relative;
+    margin: 2px 0 0 0;
+  }
+  .addBookStyleBtn{
+    margin: 60px 0 0 0;
+  }
+}
+
+@media screen and (max-width: 629px) and (min-width: 430px){
+  .change-container{
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .change-container input{
+    position: relative;
+    margin: 2px 0 0 0;
+  }
+  .addBookStyleBtn{
+    margin: 10px auto 5px ;
+  }
+  .containerBook{
+    flex-direction: column;
+    color: black;
+  }
+  .imgStyle{
+    margin: 0 auto;
+  }
+  .infoStyle {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 429px) and (min-width: 300px){
+  .change-container{
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .change-container input{
+    position: relative;
+    margin: 2px 0 0 0;
+  }
+  .addBookStyleBtn{
+    margin: 10px auto 5px ;
+  }
+  .containerBook{
+    flex-direction: column;
+    color: black;
+  }
+  .imgStyle{
+    margin: 0 auto;
+  }
+  .infoStyle {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .change-container{
+    width: 95%;
+    bottom: 45px;
+  }
+  .container-library{
+    display: flex;
+    justify-content: center;
+  }
+  .delete-container{
+
+    width: 95%;
+    margin: 0 0 0 0;
+    right: auto;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .delete-container input{
+    order: 1;
+    margin: 0;
+  }
+  .delete-container button{
+    order: 2;
+    margin: 2px 0 0 0;
+  }
+
+  .nav-header h1{
+    margin-top: 3px;
+    font-size: 20px;
+  }
+  .outputBooks{
+    font-size: 12px;
+  }
+
+  .errorContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  #counter{
+    margin: 0 10px 0 0;
+    letter-spacing: 1.5px;
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 15px;
+  }
+
+}
