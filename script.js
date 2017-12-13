@@ -1,38 +1,28 @@
 let callback = function(event) {
 
-  //COUNTER
-  let counterOutput = document.getElementById('counter');
-  let counter = 0;
+//ERROR COUNTER
 
- // GET API KEY JS CODE
+let counterOutput = document.getElementById('counter');
+let counter = 0;
+
+// GET API KEY JS CODE
 let url = 'https://www.forverkliga.se/JavaScript/api/crud.php?requestKey';
 let outputApi = document.getElementsByClassName('api-output')[0];
 let apiBtn = document.getElementById('api-btn');
 let getApi = function(){
   fetch(url)
-  .then(function(response) {
-    return response.json();
-  }).then(function(response2){
-    outputApi.innerHTML = response2.key;
-  })
+    .then(function(response) {
+        return response.json();
+    }).then(function(response2){
+        outputApi.innerHTML = response2.key;
+      })
 };
 
-// ADD A BOOK CODE
-let inputTitle = document.getElementById('input-title');//INPUT TITLE
-let inputAuthor = document.getElementById('input-author');//INPUT AUTHOR
-let addBtn = document.getElementById('add-btn'); //ADD BOOK BUTTON
-let bookOutput = document.getElementsByClassName('bookOutput')[0]; // DIV FOR BOOKS
-let inputDelete = document.getElementById('input-delete');//INPUT DELETE BOOK
-let deleteBtn = document.getElementById('btn-delete');//BUTTON DELETE
-let bookTextList = document.getElementById('div-text');//P ELEMENT IN DIV THAT STORES BOOKS
-let apiMessage = document.getElementById('api-message'); //MESSAGE FROM SERVER
-let apiStatus = document.getElementById('api-status'); //STATUS MESSAGE
-let addImg = document.createElement('img'); //SKAPAR EN IMG TAG FÖR THUMBNAILS TILL BÖCKERNA
-let createDiv = document.createElement('div'); //SKAPAR EN DIV
+apiBtn.addEventListener('click', getApi);//GET API - CLICK EVENT
 
+//VIEW LIBRARY WITH ALL BOOKS
+let bookTextList = document.getElementsByClassName('outputBooks')[0];//
 
-
-//VIEW ALL BOOKS
 let viewDataFunction = function() {
   let url = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=select&key=GxtKv';
   fetch(url)
@@ -45,44 +35,51 @@ let viewDataFunction = function() {
           bookTextList.innerHTML +=
           " Title: " + json.data[i].title + " " +
           "Author: " + json.data[i].author + " " +
-          " ID: " + json.data[i].id + " " +
-          " Updated: " + json.data[i].updated + "<br>";
+          " ID: " + json.data[i].id + "<br> "; //+
+          //" Updated: " + json.data[i].updated + "<br>";
         }
       }else{
-        bookTextList.innerHTML += 'Error loading books - Please refresh the page';
+        bookTextList.innerHTML += json.message + " " + "- Please refresh the page";
         counter += 1;
         counterOutput.innerHTML ='ERRORS: ' + counter;
-
       }
       console.log(json);
     })
 }
 viewDataFunction();
+//CREATE BOOKS
 
-//CREATES BOOK DEPENDING ON INPUT
+
 let createBook = function(googleTitle, googleAuthor) {
-  let valueTitle = inputTitle.value;//INPUT VALUE TITLE
-  let valueAuthor = inputAuthor.value;//INPUT VALUE AUTHOR
-  let urlEdited = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=insert&key=GxtKv' + '&title=' + valueTitle + googleTitle + '&author=' + valueAuthor + googleAuthor;
+  let urlEdited = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=insert&key=GxtKv' + '&title=' +  googleTitle + '&author=' + googleAuthor;
      fetch(urlEdited)
        .then(function(response) {
          return response.json();
        }).then(function(json) {
          console.log(json);
          if(json.status === 'success'){//IF API RETURNS STATUS SUCCESS - CREATES NEW BOOK FROM INPUT
-           apiStatus.innerHTML = "Status: Succes"
-           apiMessage.innerHTML = "";
-
+           viewDataFunction();
          }else {
-           apiStatus.innerHTML = "Status: Error";
-           apiMessage.innerHTML = "message: " + json.message;
+           createBook(googleTitle, googleAuthor);
+           viewDataFunction();
+           //apiStatus.innerHTML = "Status: Error";
+           //apiMessage.innerHTML = "message: " + json.message;
            console.log('ERROR');//ERROR HANDLING - DISPLAYS IF ERROR FROM API
            counter += 1;
            counterOutput.innerHTML ='ERRORS: ' + counter;
          }
        })
 };
-//DELETE BOOK BY ID
+
+
+
+
+
+
+//DELETE BOOKS
+let inputDelete = document.getElementById('input-delete');//INPUT DELETE BOOK
+let deleteBtn = document.getElementById('btn-delete');//BUTTON DELETE
+
 let deleteBook = function() {
   let valueDelete = inputDelete.value; //INPUT VALUE ID
   let urlDelete = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=delete&key=GxtKv' + '&id=' + valueDelete;
@@ -93,27 +90,29 @@ let deleteBook = function() {
       console.log(json.status);
       if(json.status === "success"){
         viewDataFunction();
-        errorDelete.style.display = 'none';
+        //errorDelete.style.display = 'none';
       }else{
-        errorDelete.style.display = 'inline';
+        deleteBook();
+        //errorDelete.style.display = 'inline';
         counter += 1;
         counterOutput.innerHTML ='ERRORS: ' + counter;
       }
     });
 };
-// CHANGE BOOKS ------------------
 
-let btnChange = document.getElementById('btnChange');
-let idChange = document.getElementById('input-id-change');
-let titleChange = document.getElementById('input-title-change');
-let authorChange = document.getElementById('input-author-change');
+deleteBtn.addEventListener('click', deleteBook);//DELETE BOOK BY ID
 
+// CHANGE BOOKS WITH KEYPRESS
+
+let inputIdChange = document.getElementById('input-id-change');
+let inputTitleChange = document.getElementById('input-title-change');
+let inputAuthorChange = document.getElementById('input-author-change');
 
 let changeBook = function(){
   //INPUT VALUES
-  let idChangeValue = idChange.value;
-  let titleChangeValue = titleChange.value;
-  let authorChangeValue = authorChange.value;
+  let idChangeValue = inputIdChange.value;
+  let titleChangeValue = inputTitleChange.value;
+  let authorChangeValue = inputAuthorChange.value;
   let urlChange = 'https://www.forverkliga.se/JavaScript/api/crud.php?op=update&key=GxtKv' + '&id=' + idChangeValue + '&title=' + titleChangeValue + '&author=' + authorChangeValue;
   fetch(urlChange)
     .then(function(response){
@@ -121,7 +120,9 @@ let changeBook = function(){
     }).then(function(json){
       if(json.status == 'success'){
         console.log('SUCCESS'); //IF SUCCESS
+        viewDataFunction();  // UPDATES THE LIST AFTER YOU ADDED THE BOOK
       }else{
+        changeBook();
         console.log('ERROR - CHANGE') //IF ERROR
         counter += 1;
         counterOutput.innerHTML ='ERRORS: ' + counter;
@@ -129,20 +130,25 @@ let changeBook = function(){
     })
 };
 
-// EVENTS
-btnChange.addEventListener('click', changeBook); // CHANGEBOOK - CLICK EVENT
-apiBtn.addEventListener('click', getApi);//GET API - CLICK EVENT
-addBtn.addEventListener('click', createBook);//ADD BOOK - CLICK EVENT
-deleteBtn.addEventListener('click', deleteBook);//DELETE BOOK BY ID
-searchBtn.addEventListener('click', function(event) { // SEARCH GOOGLE API BOOKS
-  let inputValue = searchField.value;
-  fetchGoogleBooks(inputValue);
-});
+let keyPressEnterFunction = function(event){
+    if (event.keyCode == 13) {
+      if(inputIdChange.value.length == 5){
+        console.log('You pressed a "enter" key');
+        changeBook();
+      }else{
+        console.log('ID must be 5 numbers long');
+      }
+    }
+  }
+inputIdChange.addEventListener('keypress', keyPressEnterFunction);
+inputAuthorChange.addEventListener('keypress', keyPressEnterFunction);
+inputTitleChange.addEventListener('keypress', keyPressEnterFunction);
 
+// SEARCH GOOGLE API FOR BOOKS
 
-// SEARCH FOR GOOGLE BOOKS
 let searchedList = document.getElementById('searchedList');
-
+let searchBtn = document.getElementById('buttonSearch');
+let inputSearch = document.getElementById('inputSearch');
 
 function fetchGoogleBooks(input) {
       searchedList.innerHTML = "";
@@ -177,11 +183,16 @@ function fetchGoogleBooks(input) {
             createBtn.innerHTML = "ADD BOOK";
             createBtn.addEventListener('click', function(event){
               createBook(getTitle, getAuthor);
-            })
+            });
             createDivText.innerHTML += "Title: " + getTitle + "<br>" + "Author: " + getAuthor + "<br>";
           }
         });
 };
+
+searchBtn.addEventListener('click', function(event) { // SEARCH GOOGLE API BOOKS
+  let inputValue = inputSearch.value;
+  fetchGoogleBooks(inputValue);
+});
 
 
 
