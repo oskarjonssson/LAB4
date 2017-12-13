@@ -142,6 +142,8 @@ searchBtn.addEventListener('click', function(event) { // SEARCH GOOGLE API BOOKS
 
 // SEARCH FOR GOOGLE BOOKS
 let searchedList = document.getElementById('searchedList');
+
+
 function fetchGoogleBooks(input) {
       searchedList.innerHTML = "";
       let url = 'https://www.googleapis.com/books/v1/volumes?key=AIzaSyAjEEliLxgt_UKvfhO9aQDoF-Rdo2YHKhA&q=' + input;
@@ -175,14 +177,14 @@ function fetchGoogleBooks(input) {
             createBtn.innerHTML = "ADD BOOK";
             createBtn.addEventListener('click', function(event){
               createBook(getTitle, getAuthor);
-
-
             })
-            createDivText.innerHTML += getTitle + "<br>" + "Author: " + getAuthor + "<br>";
+            createDivText.innerHTML += "Title: " + getTitle + "<br>" + "Author: " + getAuthor + "<br>";
           }
         });
 };
 
-}
 
+
+
+}
 window.addEventListener('load', callback);
