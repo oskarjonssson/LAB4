@@ -3,6 +3,7 @@ let callback = function(event) {
 //ERROR COUNTER
 
 let counterOutput = document.getElementById('counter');
+let msgOutput = document.getElementById('message');
 let counter = 0;
 
 // GET API KEY JS CODE
@@ -40,9 +41,9 @@ let viewDataFunction = function() {
         }
       }else{
         viewDataFunction();
-        bookTextList.innerHTML += json.message + " " + "- Please refresh the page";
+        msgOutput.innerText = 'Server Msg: ' + json.message;
         counter += 1;
-        counterOutput.innerHTML ='ERRORS: ' + counter;
+        counterOutput.innerText ='ERRORS: ' + counter;
       }
       console.log(json);
     })
@@ -63,6 +64,7 @@ let createBook = function(googleTitle, googleAuthor) {
          }else {
            createBook(googleTitle, googleAuthor);
            viewDataFunction();
+           msgOutput.innerText = 'Server Msg: ' + json.message;
            //apiStatus.innerHTML = "Status: Error";
            //apiMessage.innerHTML = "message: " + json.message;
            console.log('ERROR');//ERROR HANDLING - DISPLAYS IF ERROR FROM API
@@ -98,6 +100,7 @@ let deleteBook = function() {
           window.location.reload(); //RELOADS PAGE IF ERROR EXCEED 10
         }
         //errorDelete.style.display = 'inline';
+        msgOutput.innerText = 'Server Msg: ' + json.message;
         counter += 1;
         counterOutput.innerHTML ='ERRORS: ' + counter;
       }
@@ -136,6 +139,7 @@ let changeBook = function(){
       }else{
         changeBook();
         console.log('ERROR - CHANGE') //IF ERROR
+        msgOutput.innerText = 'Server Msg: ' + json.message;
         counter += 1;
         counterOutput.innerHTML ='ERRORS: ' + counter;
       }
