@@ -1,7 +1,14 @@
 /*** GLOBAL***/
 body{
   background-color: #3c3253;
-
+}
+h5{
+  display: inline-block;
+  margin: 0;
+  font-size: 15px;
+  font-weight: normal;
+  font-family: 'Montserrat';
+  color: white;
 }
 /***NAV**/
 .nav-header{
@@ -90,6 +97,7 @@ body{
   flex-direction: row;
   flex-wrap: nowrap;
   margin: 0 0px 5px 2px;
+  padding-top: 15px;
 }
 
 .delete-container input {
@@ -261,6 +269,22 @@ ul{
     margin: 0 auto;
   }
 }
+@media screen and (max-width: 570px){
+  .change-container{
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .delete-container{
+    padding-top: 87px;
+  }
+  @media screen and (max-width: 436px){
+    .change-container{
+      flex-direction: column;
+      flex-wrap: nowrap;
+    }
+    .delete-container{
+      padding-top: 87px;
+    }
 
 @media screen and (max-width: 429px) and (min-width: 300px){
   .change-container{
@@ -304,6 +328,7 @@ ul{
     right: auto;
     flex-direction: column;
     flex-wrap: wrap;
+    padding-top: 1px;
   }
   .delete-container input{
     order: 1;
