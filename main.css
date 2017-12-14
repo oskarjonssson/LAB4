@@ -225,6 +225,9 @@ ul{
   .addBookStyleBtn{
     margin: 60px 0 0 0;
   }
+  .outputBooks{
+    padding: 0 0 100px 0;
+  }
 }
 
 @media screen and (max-width: 629px) and (min-width: 430px){
@@ -250,6 +253,9 @@ ul{
     position: relative;
     text-align: center;
     margin: 0 auto;
+  }
+  .outputBooks{
+    padding: 0 0 100px 0;
   }
 }
 
@@ -307,6 +313,7 @@ ul{
     font-size: 20px;
   }
   .outputBooks{
+    padding: 0 0 125px 0;
     font-size: 12px;
   }
 
