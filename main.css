@@ -53,7 +53,6 @@ body{
   color: white;
   font-family: 'Montserrat';
   font-size: 20px;
-  height: 40px;
 }
 /*** LIBRARY / MAIN ***/
 
@@ -227,7 +226,7 @@ ul{
   }
 }
 
-@media screen and (max-width: 429px) and (min-width: 300px){
+@media screen and (max-width: 629px) and (min-width: 430px){
   .change-container{
     flex-direction: column;
     flex-wrap: nowrap;
@@ -253,16 +252,11 @@ ul{
   }
 }
 
-  @media screen
-  and (device-width: 360px)
-  and (device-height: 640px)
-  and (-webkit-device-pixel-ratio: 3)
-  and (orientation: portrait) {
-    .navigation {
-      -webkit-flex-flow: column wrap;
-      flex-flow: column wrap;
-      padding: 0;
-    }
+@media screen and (max-width: 429px) and (min-width: 300px){
+  .change-container{
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
   .change-container input{
     position: relative;
     margin: 2px 0 0 0;
